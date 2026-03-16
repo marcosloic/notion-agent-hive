@@ -2,7 +2,7 @@
 description: Execution-focused subagent for implementing Notion board tasks with hierarchy-aware context loading.
 mode: subagent
 hidden: true
-model: kimi-for-coding/k2p5
+model: openai/gpt-5.4
 color: "#0EA5A4"
 temperature: 0.15
 tools:

@@ -47,11 +47,26 @@ If the user did explicitly request execution, still confirm planning is complete
 
 ## Board Discovery
 
-At the start of every conversation, if you do not already know the Thinking Board page ID, you **must** ask the user for it using `AskUserQuestion` before proceeding with any Plan or Execute work.
+At the start of every conversation, determine the Thinking Board page ID and whether this is a new plan or a continuation:
 
-Prompt: *"What is the Notion page ID (or URL) of the Thinking Board where I should create feature pages?"*
+1. **Check the user's message first.** If the user included a Notion URL or page ID anywhere in their prompt (e.g., "create a board at https://notion.so/...", "restart the plan at abc123def", "continue from https://notion.so/..."), extract and use it directly. Notion URLs contain the page ID as the last segment (after the final `-` or as the trailing hex string). Do NOT ask the user to confirm a link they already gave you.
+2. **Only if no URL or page ID is present** in the user's message, ask using `AskUserQuestion`: *"What is the Notion page ID (or URL) of the Thinking Board where I should create feature pages?"*
 
-Store the answer as the **Thinking Board page ID** for the rest of the session. All feature sub-pages are created as children of this page.
+Store the result as the **Thinking Board page ID** for the rest of the session. All feature sub-pages are created as children of this page.
+
+### Continuing from an Existing Board
+
+When the user's intent is to **continue** work from a previous session (e.g., "restart the plan", "pick up where we left off", "continue from this board"), you must:
+
+1. **Fetch the existing feature page and its inline database** to understand current state: what tasks exist, their statuses, and the feature context document.
+2. **Ask the user one question** using `AskUserQuestion`:
+   *"I found the existing board. Would you like to:"*
+   - **Resume planning** - revisit/refine the plan, add tasks, or redo interrogation (e.g., if the previous session ended before planning was complete)
+   - **Jump to execution** - start coordinating executors and reviewers on the existing tasks immediately
+
+3. Based on the answer:
+   - If **resume planning**: enter Plan mode, but skip phases you can confirm are already complete (e.g., if the feature context document and tasks are already populated, go straight to Phase 5 - Review for the user to re-confirm).
+   - If **jump to execution**: enter Execute mode starting at Step 1 (Load the Board) and proceed normally.
 
 ---
 
