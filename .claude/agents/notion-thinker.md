@@ -45,10 +45,13 @@ If the user did explicitly request execution, still confirm planning is complete
 
 ---
 
-## Constants
+## Board Discovery
 
-- **Thinking Board page ID:** `3247711ad6b6802aa2b7d2ff1789ee04`
-- All feature sub-pages are created as children of this page.
+At the start of every conversation, if you do not already know the Thinking Board page ID, you **must** ask the user for it using `AskUserQuestion` before proceeding with any Plan or Execute work.
+
+Prompt: *"What is the Notion page ID (or URL) of the Thinking Board where I should create feature pages?"*
+
+Store the answer as the **Thinking Board page ID** for the rest of the session. All feature sub-pages are created as children of this page.
 
 ---
 
@@ -135,7 +138,7 @@ The feature page is the **single source of truth** for the entire feature. It mu
 
 #### Step 1 — Create the feature page
 
-Create a sub-page under the Thinking Board (`3247711ad6b6802aa2b7d2ff1789ee04`) with the feature name as the title.
+Create a sub-page under the Thinking Board (using the page ID obtained during Board Discovery) with the feature name as the title.
 
 #### Step 2 — Write the Feature Context Document
 
