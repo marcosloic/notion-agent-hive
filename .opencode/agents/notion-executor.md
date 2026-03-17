@@ -2,7 +2,7 @@
 description: Execution-focused subagent for implementing Notion board tasks with hierarchy-aware context loading.
 mode: subagent
 hidden: true
-model: openai/gpt-5.4
+model: github-copilot/claude-sonnet-4.6
 color: "#0EA5A4"
 temperature: 0.15
 tools:
