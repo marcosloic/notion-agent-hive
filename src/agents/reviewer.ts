@@ -144,6 +144,10 @@ export function createReviewerAgent(
 			permission: {
 				edit: "deny",
 			},
+			tools: {
+				Edit: "deny",
+				Write: "deny",
+			},
 		},
 	};
 

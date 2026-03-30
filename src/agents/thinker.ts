@@ -387,6 +387,10 @@ export function createThinkerAgent(
 				edit: "deny",
 				bash: "deny",
 			},
+			tools: {
+				Edit: "deny",
+				Write: "deny",
+			},
 		},
 	};
 

@@ -355,6 +355,11 @@ export function createCoordinatorAgent(
 				edit: "deny",
 				bash: "deny",
 			},
+			agents: {
+				"notion-thinker": "allow",
+				"notion-executor": "allow",
+				"notion-reviewer": "allow",
+			},
 		},
 	};
 
